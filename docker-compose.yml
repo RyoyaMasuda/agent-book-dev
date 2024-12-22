@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  python-env:
+    build: .
+    container_name: agent-book-dev
+    working_dir: /home/user/agent-book-dev
+    volumes:
+      - ./:/home/user/agent-book-dev
+      - ~/.ssh:/home/user/.ssh:ro  # ホストのSSHキーをマウント
+    environment:
+      - PATH="/home/user/.local/bin:$PATH"
+    stdin_open: true
+    tty: true
+
+# services:
+#   well-being_dev:
+#     build: .
+#     volumes:
+#       - ~/.ssh:/home/tmp_user/.ssh
+#       - ../:/home/tmp_user/well-being-company-survey/
+#     environment:
+#       - PATH="/home/tmp_user/.local/bin:$PATH"
+#     # コンテナが終了せず、シェルでのインタラクティブな操作を可能にすることができます。
+#     stdin_open: true  # -iオプションに相当
+#     tty: true         # -tオプションに相当
+#     working_dir: /home/tmp_user/well-being-company-survey/
